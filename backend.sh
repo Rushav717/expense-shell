@@ -47,13 +47,12 @@ VALIDATE $? "Installing NodeJs"
 
 id expense &>> $LOG_FILE_NAME
 if [ $? -ne 0 ]
-then{
+then
     useradd expense &>> $LOG_FILE_NAME
     VALIDATE $? "Adding expense user"
 else
     echo "User already exists...... $Y SKIPPING"
 fi
-}
 
 
 mkdir /app &>> $LOG_FILE_NAME
