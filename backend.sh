@@ -36,19 +36,19 @@ echo "Script started executing at:: $TIMESTAMP" &>> $LOG_FILE_NAME
 
 CHECK_ROOT
 
-dnf module disable nodejs -y &>> LOG_FILE_NAME
+dnf module disable nodejs -y &>> $LOG_FILE_NAME
 VALIDATE $? "Disabling existing default NodeJs"
 
-dnf module enable nodejs:20 -y &>> LOG_FILE_NAME
+dnf module enable nodejs:20 -y &>> $LOG_FILE_NAME
 VALIDATE $? "Enabling NodeJs 20"
 
-dnf install nodejs -y &>> LOG_FILE_NAME
+dnf install nodejs -y &>> $LOG_FILE_NAME
 VALIDATE $? "Installing NodeJs"
 
-useradd expense &>> LOG_FILE_NAME
+useradd expense &>> $LOG_FILE_NAME
 VALIDATE $? "Adding expense user"
 
-mkdir /app &>> LOG_FILE_NAME
+mkdir /app &>> $LOG_FILE_NAME
 VALIDATE $? "creating app directory"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>> $LOG_FILE_NAME
