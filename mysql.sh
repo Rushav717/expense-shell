@@ -45,9 +45,6 @@ VALIDATE $? "Enabling MYSQL SERVER"
 systemctl start mysqld &>> $LOG_FILE_NAME
 VALIDATE $? "Starting MYSQL SERVER"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 
-VALIDATE $? "Setting ROOT PASSWORD"
-
 mysql -h mysql.rushhav.fun -u root -pExpenseApp@1 -e 'Show databases';      
 if [ $? -ne 0 ]
 then
