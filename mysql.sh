@@ -47,8 +47,15 @@ VALIDATE $? "Starting mysql server"
 mysql_secure_installation --set-root-pass ExpenseApp@1
 VALIDATE $? "Setting root password"
 
-
-
+mysql -h mysql.rushhav.fun -u root -pExpenseapp@1 -e 'show databases;'
+if [ $? -ne 0 ]
+then
+    echo "Mysql root password not setup" &>> $LOG_FILE_NAME
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting root password"
+else 
+    echo -e "Mysql root password already set ... $Y Skipping $N"
+fi
 
 
 
