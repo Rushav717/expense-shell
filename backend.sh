@@ -55,7 +55,7 @@ VALIDATE $? "downloading the backend code"
 
 cd /app
 
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>> $LOG_FILE_NAME
 VALIDATE $? "unzipping the backend code"
 
 npm install &>> $LOG_FILE_NAME
@@ -69,13 +69,13 @@ VALIDATE $? "installing mysql client"
 mysql -h mysql.rushhav.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql &>> $LOG_FILE_NAME
 VALIDATE $? "setting up the transaction schema and tables"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOG_FILE_NAME
 VALIDATE $? "daemon reload"
-
-systemctl enable backend
+ 
+systemctl enable backend &>> $LOG_FILE_NAME
 VALIDATE $? "enabling the backend"
 
-systemctl start backend
+systemctl start backend &>> $LOG_FILE_NAME
 VALIDATE $? "starting backend"
 
 
